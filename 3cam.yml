@@ -1,0 +1,27 @@
+version: "3.3"
+
+services:
+    frictionless_edge:
+        image : meontechno/frictionless:3cam-seq
+        command: "python3 image_recognition/app.py"
+        environment:
+            PROD_MODEL_URL: "https://bitbucket.org/nsanjay/frictionless_weights/raw/d95c861dff42daa620eb8ca442ad04fe379caa0a/product/v2.pt"
+            OBJ_MODEL_URL: "https://bitbucket.org/nsanjay/frictionless_weights/raw/ad09dec9a785b10bc79f8de52fdfb69dbdbdddd2/object/v1.pt"
+            CART_WS_URL: "ws://ec2-3-218-19-179.compute-1.amazonaws.com/live-cart"
+            THRESH: 0.8
+            SSIM_THRESH: 0.95
+            BROKER: "broker.hivemq.com"
+            TOPIC1: "frictionless/vontier/start-transaction"
+            TOPIC2: "frictionless/vontier/close-transaction"
+            IMG_CAP_TOPIC: "frictionless/vontier/capture-image"
+            IMG_WS_URL: "ws://ec2-3-218-19-179.compute-1.amazonaws.com/vontier/image-ws"
+        devices:
+            - "/dev/video0:/dev/video0"
+            - "/dev/video1:/dev/video2"
+            - "/dev/video2:/dev/video4"
+        runtime: "nvidia"
+        deploy:
+            restart_policy:
+                condition: on-failure
+                delay: 5s
+                max_attempts: 5
