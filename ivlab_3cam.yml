@@ -11,9 +11,9 @@ services:
             THRESH: 0.8
             SSIM_THRESH: 0.95
             BROKER: "broker.hivemq.com"
-            TOPIC1: "frictionless/lab/start-transaction"
-            TOPIC2: "frictionless/lab/close-transaction"
-            IMG_CAP_TOPIC: "frictionless/lab/capture-image"
+            TOPIC1: "frictionless/ivlab/start-transaction"
+            TOPIC2: "frictionless/ivlab/close-transaction"
+            IMG_CAP_TOPIC: "frictionless/ivlab/capture-image"
             IMG_WS_URL: "ws://ec2-3-218-19-179.compute-1.amazonaws.com/lab/image-ws"
         devices:
             - "/dev/video0:/dev/video0"
