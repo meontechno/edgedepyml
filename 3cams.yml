@@ -5,7 +5,7 @@ services:
         image : meontechno/frictionless:3cam-seq
         command: "python3 image_recognition/app.py"
         environment:
-            PROD_MODEL_URL: "https://bitbucket.org/nsanjay/frictionless_weights/raw/d95c861dff42daa620eb8ca442ad04fe379caa0a/product/v2.pt"
+            PROD_MODEL_URL: "https://bitbucket.org/nsanjay/frictionless_weights/raw/10a61a2d405cf9aa0dda69ecf9b93373fd24a1a0/product/v3.pt"
             OBJ_MODEL_URL: "https://bitbucket.org/nsanjay/frictionless_weights/raw/ad09dec9a785b10bc79f8de52fdfb69dbdbdddd2/object/v1.pt"
             CART_WS_URL: "ws://ec2-3-218-19-179.compute-1.amazonaws.com/live-cart"
             THRESH: 0.8
