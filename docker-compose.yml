@@ -2,8 +2,7 @@ version: "3.3"
 
 services:
     frictionless_edge:
-        # build: ./Dockerfile_x86_64
-        image : x86test:latest
+        image : meontechno/frictionless:x86test
         command: "python3 image_recognition/app.py"
         environment:
             PROD_MODEL_URL: "https://bitbucket.org/nsanjay/frictionless_weights/raw/10a61a2d405cf9aa0dda69ecf9b93373fd24a1a0/product/v3.pt"
