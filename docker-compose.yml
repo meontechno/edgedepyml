@@ -1,0 +1,24 @@
+version: "3.3"
+
+services:
+    frictionless_edge:
+        # build: ./Dockerfile_x86_64
+        image : x86test:latest
+        command: "python3 image_recognition/app.py"
+        environment:
+            PROD_MODEL_URL: "https://bitbucket.org/nsanjay/frictionless_weights/raw/10a61a2d405cf9aa0dda69ecf9b93373fd24a1a0/product/v3.pt"
+            OBJ_MODEL_URL: "https://bitbucket.org/nsanjay/frictionless_weights/raw/ad09dec9a785b10bc79f8de52fdfb69dbdbdddd2/object/v1.pt"
+            CART_WS_URL: "ws://ec2-3-218-19-179.compute-1.amazonaws.com/lab/live-cart"
+            THRESH: 0.8
+            BROKER: "broker.hivemq.com"
+            TOPIC1: "frictionless/start-lab-transaction"
+            TOPIC2: "frictionless/close-transaction"
+            TOPIC3: "frictionless/ivlab/start-transaction"
+            TOPIC4: "frictionless/ivlab/close-transaction"
+            IMG_CAP_TOPIC: "frictionless/ivlab/capture-image"
+            IMG_WS_URL: "ws://ec2-3-218-19-179.compute-1.amazonaws.com/lab/image-ws"
+        devices:
+            - "/dev/video0:/dev/video0"
+            - "/dev/video2:/dev/video2"
+            - "/dev/video4:/dev/video4"
+        runtime: "nvidia"
