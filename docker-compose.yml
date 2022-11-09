@@ -1,23 +1,56 @@
+# version: "3.3"
+
+# services:
+#     frictionless_edge:
+#         image : meontechno/frictionless:x86test
+#         command: "python3 image_recognition/app.py"
+#         environment:
+#             PROD_MODEL_URL: "https://bitbucket.org/nsanjay/frictionless_weights/raw/10a61a2d405cf9aa0dda69ecf9b93373fd24a1a0/product/v3.pt"
+#             OBJ_MODEL_URL: "https://bitbucket.org/nsanjay/frictionless_weights/raw/ad09dec9a785b10bc79f8de52fdfb69dbdbdddd2/object/v1.pt"
+#             CART_WS_URL: "ws://ec2-3-218-19-179.compute-1.amazonaws.com/lab/live-cart"
+#             THRESH: 0.8
+#             BROKER: "broker.hivemq.com"
+#             TOPIC1: "frictionless/start-lab-transaction"
+#             TOPIC2: "frictionless/close-transaction"
+#             TOPIC3: "frictionless/ivlab/start-transaction"
+#             TOPIC4: "frictionless/ivlab/close-transaction"
+#             IMG_CAP_TOPIC: "frictionless/ivlab/capture-image"
+#             IMG_WS_URL: "ws://ec2-3-218-19-179.compute-1.amazonaws.com/lab/image-ws"
+#         devices:
+#             - "/dev/video0:/dev/video0"
+#             - "/dev/video2:/dev/video2"
+#             - "/dev/video4:/dev/video4"
+#         runtime: "nvidia"
+
+
 version: "3.3"
 
 services:
+    frictionless_scanner:
+        image: "meontechno/frictionless-scanner:latest"
+        command: "python3 qr_scanner/app.py"
+        environment:
+            TOPIC: "frictionless/start-transaction"
+            WS_URL: "ws://ec2-3-218-19-179.compute-1.amazonaws.com/live-cart"
+        devices:
+            - "/dev/hidraw0:/dev/hidraw1"
+        restart: on-failure
     frictionless_edge:
-        image : meontechno/frictionless:x86test
+        #image: "meontechno/frictionless:arm64-jp4.6.2-r32.7.1-t1.10"
+        image: "meontechno/frictionless:x86-p3.8-t1.8.1-v2"
         command: "python3 image_recognition/app.py"
         environment:
-            PROD_MODEL_URL: "https://bitbucket.org/nsanjay/frictionless_weights/raw/10a61a2d405cf9aa0dda69ecf9b93373fd24a1a0/product/v3.pt"
-            OBJ_MODEL_URL: "https://bitbucket.org/nsanjay/frictionless_weights/raw/ad09dec9a785b10bc79f8de52fdfb69dbdbdddd2/object/v1.pt"
-            CART_WS_URL: "ws://ec2-3-218-19-179.compute-1.amazonaws.com/lab/live-cart"
+            MODEL_URL: "https://github.com/meontechno/frictionless_weights/raw/main/v9.0/best.pt"
             THRESH: 0.8
+            WS_URL: "ws://ec2-3-218-19-179.compute-1.amazonaws.com/live-cart"
             BROKER: "broker.hivemq.com"
-            TOPIC1: "frictionless/start-lab-transaction"
+            TOPIC1: "frictionless/start-transaction"
             TOPIC2: "frictionless/close-transaction"
-            TOPIC3: "frictionless/ivlab/start-transaction"
-            TOPIC4: "frictionless/ivlab/close-transaction"
-            IMG_CAP_TOPIC: "frictionless/ivlab/capture-image"
-            IMG_WS_URL: "ws://ec2-3-218-19-179.compute-1.amazonaws.com/lab/image-ws"
+            TOPIC3: "frictionless/vontier/start-transaction"
+            TOPIC4: "frictionless/vontier/close-transaction"
         devices:
-            - "/dev/video0:/dev/video0"
-            - "/dev/video2:/dev/video2"
-            - "/dev/video4:/dev/video4"
+            - "/dev/video2:/dev/video0"
         runtime: "nvidia"
+        restart: on-failure
+        depends_on:
+            - frictionless_scanner
