@@ -1,0 +1,10 @@
+version: "3.3"
+
+services:
+    frictionless_scanner:
+        build: .
+        command: "python3 qr_scanner/app.py"
+        environment:
+            TOPIC: "frictionless/start-transaction"
+        devices:
+            - "/dev/hidraw0:/dev/hidraw1"
