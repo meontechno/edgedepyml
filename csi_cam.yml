@@ -1,0 +1,27 @@
+version: "3.3"
+
+services:
+    frictionless_edge:
+        image : meontechno/frictionless:csi-test
+        command: bash -c "export LD_PRELOAD=/usr/lib/aarch64-linux-gnu/tegra/libnvbuf_utils.so && python3 image_recognition/app.py"
+        network_mode: "host"
+        environment:
+            PROD_MODEL_URL: "https://bitbucket.org/nsanjay/frictionless_weights/raw/4433bd8b005c0bf10c131f448afd94df6dfb4ac6/product/v2.pt"
+            OBJ_MODEL_URL: "https://bitbucket.org/nsanjay/frictionless_weights/raw/ad09dec9a785b10bc79f8de52fdfb69dbdbdddd2/object/v1.pt"
+            CART_WS_URL: "ws://ec2-3-218-19-179.compute-1.amazonaws.com/lab/live-cart"
+            THRESH: 0.8
+            SSIM_THRESH: 0.95
+            BROKER: "broker.hivemq.com"
+            TOPIC1: "frictionless/start-lab-transaction"
+            TOPIC2: "frictionless/close-transaction"
+            TOPIC3: "frictionless/ivlab/start-transaction"
+            TOPIC4: "frictionless/ivlab/close-transaction"
+            IMG_CAP_TOPIC: "frictionless/ivlab/capture-image"
+            IMG_WS_URL: "ws://ec2-3-218-19-179.compute-1.amazonaws.com/lab/image-ws"
+        volumes:
+            - "/tmp/.X11-unix/:/tmp/.X11-unix"
+            - "/tmp/argus_socket:/tmp/argus_socket"
+        devices:
+            - "/dev/video0:/dev/video0"
+            - "/dev/video1:/dev/video1"
+        runtime: "nvidia"
