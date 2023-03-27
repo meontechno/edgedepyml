@@ -7,6 +7,8 @@ sys_arc=$(uname -m)
 echo -e "###Logging in to docker"
 docker login -u meontechno -p 4535e86d-c3d0-41c1-9ae3-5bb9bbf45df4
 
+# Add logic to pull image specific to host system architecture
+
 echo -e "###Pulling container images"
 docker pull meontechno/frictionless:3cam-seq
 
