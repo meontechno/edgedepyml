@@ -1,0 +1,13 @@
+[Unit]
+Description=<Digit Kart Vision Service Manager>
+Requires=basic.target network-online.target file_update.service device_config.service docker.service
+After=basic.target network-online.target file_update.service device_config.service docker.service
+
+[Service]
+WorkingDirectory=/home/setup
+ExecStart=/usr/local/bin/docker-compose up -d
+ExecStop=/usr/local/bin/docker-compose down
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
