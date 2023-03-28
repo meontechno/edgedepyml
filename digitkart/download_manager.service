@@ -4,7 +4,7 @@ Requires=basic.target network-online.target
 After=basic.target network-online.target
 
 [Service]
-ExecStart=/home/setup/file_update.sh
+ExecStart=/home/setup/download_manager.sh
 
 [Install]
 WantedBy=multi-user.target
