@@ -1,5 +1,5 @@
 [Unit]
-Description=<Update files on reboot>
+Description=<Download files on reboot>
 Requires=basic.target network-online.target
 After=basic.target network-online.target
 
