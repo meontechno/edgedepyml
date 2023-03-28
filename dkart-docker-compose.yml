@@ -1,0 +1,45 @@
+version: "3.4"
+
+services:
+    watchtower:
+        image: containrrr/watchtower:armhf-latest
+        volumes:
+            - "/var/run/docker.sock:/var/run/docker.sock"
+            - "/home/orin1/.registry_cred/config.json:/config.json"
+        command: "--interval 60"
+        restart: on-failure
+    frictionless_scanner:
+        image: index.docker.io/meontechno/frictionless-scanner:latest
+        command: "python3 qr_scanner/app.py"
+        environment:
+            TOPIC: "frictionless/customer-id-scan"
+            WS_URL: "ws://ec2-3-218-19-179.compute-1.amazonaws.com/lab-live-cart"
+        devices:
+            - "/dev/hidraw0:/dev/hidraw1"
+        restart: on-failure
+    frictionless_edge:
+        image : index.docker.io/meontechno/frictionless:kc-terminal-test2
+        command: bash -c "export LD_PRELOAD=/usr/lib/aarch64-linux-gnu/tegra/libnvbuf_utils.so && python3 image_recognition/app.py"
+        network_mode: "host"
+        environment:
+            PROD_MODEL_URL: "https://bitbucket.org/nsanjay/frictionless_weights/raw/42500f1398e250c573191095eb54e4ca4137cdf3/product/demo_data/best.pt"
+            OBJ_MODEL_URL: "https://bitbucket.org/nsanjay/frictionless_weights/raw/ad09dec9a785b10bc79f8de52fdfb69dbdbdddd2/object/v1.pt"
+            CART_WS_URL: "ws://ec2-3-218-19-179.compute-1.amazonaws.com/lab/live-cart"
+            THRESH: 0.8
+            SSIM_THRESH: 0.95
+            BROKER: "broker.hivemq.com"
+            TOPIC1: "frictionless/customer-id-scan"
+            TOPIC2: "frictionless/close-transaction"
+            TOPIC3: "frictionless/ivlab/start-transaction"
+            TOPIC4: "frictionless/ivlab/close-transaction"
+            TOPIC5: "frictionless/ivlab/terminal/start-transaction"
+            IMG_CAP_TOPIC: "frictionless/ivlab/capture-image"
+            IMG_WS_URL: "ws://ec2-3-218-19-179.compute-1.amazonaws.com/lab/image-ws"
+            TENANT_ID: "3d74191d-fe60-475d-8dcc-6ad6277dacf6"
+            EDGE_ID: "KCED90009"
+        devices:
+            - "/dev/video0:/dev/video0"
+              # - "/dev/video1:/dev/video1"
+            - "/dev/video2:/dev/video2"
+        runtime: "nvidia"
+        restart: on-failure
