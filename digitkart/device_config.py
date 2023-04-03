@@ -13,7 +13,7 @@ def get_device_serial():
                     serial = row.split("=")[-1]
     except Exception as e:
         print(f"Error occured: {e}\nCannot open env file")
-    return serial
+    return serial.replace("\n", "")
 
 
 def fetch_config(serial_num):
