@@ -14,12 +14,12 @@ services:
         environment:
             BROKER: "broker.hivemq.com"
             ASSOCIATE_CUS_TOPIC: "frictionless/customer-id-scan"
-            TRANSACTION_TOPIC: "frictionless/ivlab/terminal/start-transaction"
+            #TRANSACTION_TOPIC: "frictionless/ivlab/terminal/start-transaction"
             CART_TOPIC: "frictionless/edge-cart"
             WS_URL: "ws://ec2-3-218-19-179.compute-1.amazonaws.com/live-cart"
-            TENANT_ID: "3d74191d-fe60-475d-8dcc-6ad6277dacf6"
-            EDGE_ID: "KCED90009"
             ADD_ITEMS_LOCAL_CART: "https://dev.digitkart.ai/api/frictionless/api/kc/updateTransaction"
+        env_file:
+            - fedge-variables.env
         devices:
             - "/dev/hidraw0:/dev/hidraw1"
         restart: on-failure
@@ -38,17 +38,17 @@ services:
             TOPIC2: "frictionless/close-transaction"
             TOPIC3: "frictionless/ivlab/start-transaction"
             TOPIC4: "frictionless/ivlab/close-transaction"
-            TOPIC5: "frictionless/ivlab/terminal/start-transaction"
+            # TOPIC5: "frictionless/ivlab/terminal/start-transaction"
             CART_TOPIC: "frictionless/edge-cart"
             IMG_CAP_TOPIC: "frictionless/ivlab/capture-image"
             IMG_WS_URL: "ws://ec2-3-218-19-179.compute-1.amazonaws.com/lab/image-ws"
             CART_API: "https://dev.digitkart.ai/api/frictionless/api/kc/updateTransaction"
             ASSOCIATE_CUST_API: "https://dev.digitkart.ai/api/frictionless/api/kc/associateCustomerId"
-            TENANT_ID: "3d74191d-fe60-475d-8dcc-6ad6277dacf6"
-            EDGE_ID: "KCED90009"
+        env_file:
+            - fedge-variables.env
         devices:
             - "/dev/video0:/dev/video0"
-              # - "/dev/video1:/dev/video1"
-            - "/dev/video2:/dev/video2"
+            - "/dev/video2:/dev/video1"
+            - "/dev/video4:/dev/video2"
         runtime: "nvidia"
         restart: on-failure
