@@ -1,6 +1,6 @@
 #!/bin/bash
 
-sleep 10
+sleep 30
 
 # Application directory
 dir_path="/home/setup"
