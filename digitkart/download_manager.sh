@@ -1,5 +1,7 @@
 #!/bin/bash
 
+sleep 10
+
 # Application directory
 dir_path="/home/setup"
 if [ ! -d $dir_path ]
