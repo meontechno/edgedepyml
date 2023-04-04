@@ -17,22 +17,21 @@
  17 
  18 
  19 def fetch_config(serial_num):
- 20     tenant_id, edge_id, token = None, None, None
+ 20     tenant_id, edge_id = None, None
  21     header = {"serial-number": serial_num}
  22     try:
  23         res = httpx.get(dev_config_api, headers=header, timeout=None)
  24         res_json = res.json()
  25         tenant_id = res_json['data']['X_Tenant_id']
  26         edge_id = res_json['data']['kcedgedevice_id']
- 27         token = res_json['data']['token']
  28     except Exception as e:
  29         print(f"Error occured: {e}\nAPI failed!")
- 30     return tenant_id, edge_id, token
+ 30     return tenant_id, edge_id
  31 
  32 
  33 if __name__ == "__main__":
  34     dev_config_api = "https://dev.digitkart.ai/api/frictionless/api/kc/getEdgeDeviceConfig"
- 35     tenant_id, edge_id, token = fetch_config(get_device_serial())
+ 35     tenant_id, edge_id = fetch_config(get_device_serial())
  36     try:
  37         with open("/home/setup/fedge-variables.env", "a") as env_file:
  38             env_file.write(f"TENANT_ID={tenant_id}\n")
@@ -42,8 +41,3 @@
  42             env_file.write(f"TRANSACTION_TOPIC={tenant_id}/{edge_id}/start-transaction")
  43     except Exception as e:
  44         print(f"Error occured: {e}\nCannot create env variables.")
- 45     try:
- 46         cmd = f"docker login -u meontechno -p {token}"
- 47         os.system(cmd)
- 48     except Exception as e:
- 49         print(f"Error occured: {e}\n Cannot login to docker.")
