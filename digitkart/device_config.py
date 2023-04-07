@@ -49,4 +49,4 @@ if __name__ == "__main__":
     cmd = f"docker login -u meontechno -p {key}"
     os.system(cmd)
   except Exception as e:
-    print(f"Error occured: {e}\nUnable to login to docker..."
+    print(f"Error occured: {e}\nUnable to login to docker...")
