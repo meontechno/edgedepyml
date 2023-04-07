@@ -1,6 +1,6 @@
 [Unit]
 Description=<Configure device on reboot>
-Requires=basic.target network-online.target file_update.service
+Requires=basic.target network-online.target download_manager.service
 After=basic.target network-online.target file_update.service
 
 [Service]
