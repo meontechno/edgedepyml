@@ -1,7 +1,7 @@
 [Unit]
 Description=<Configure device on reboot>
 Requires=basic.target network-online.target download_manager.service
-After=basic.target network-online.target file_update.service
+After=basic.target network-online.target download_manager.service
 
 [Service]
 ExecStart=/usr/bin/python3 /home/setup/device_config.py
