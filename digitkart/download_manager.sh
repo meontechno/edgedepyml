@@ -12,7 +12,12 @@ fi
 
 serial=$(cat /proc/device-tree/serial-number)
 echo -e "SERIAL_NUMBER="$serial > $dir_path/fedge-variables.env
+chmod 777 $dir_path/fedge-variables.env
 
 echo Downloading configuration files...
 wget https://raw.githubusercontent.com/meontechno/edgedepyml/main/digitkart/device_config.py -O $dir_path/device_config.py
+sleep 10
+chmod 777 $dir_path/device_config.py
 wget https://raw.githubusercontent.com/meontechno/edgedepyml/main/digitkart/dkart-docker-compose.yml -O $dir_path/docker-compose.yml
+sleep 10
+chmod 777 $dir_path/docker-compose.yml
