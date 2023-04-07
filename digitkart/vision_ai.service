@@ -1,7 +1,7 @@
 [Unit]
 Description=<Digit Kart Vision Service Manager>
-Requires=basic.target network-online.target file_update.service device_config.service docker.service
-After=basic.target network-online.target file_update.service device_config.service docker.service
+Requires=basic.target network-online.target download_manager.service device_config.service docker.service
+After=basic.target network-online.target download_manager.service device_config.service docker.service
 
 [Service]
 WorkingDirectory=/home/setup
