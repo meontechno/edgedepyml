@@ -51,5 +51,6 @@ else
     groupadd docker
 fi
 usermod -aG docker $USER
+su - ${USER}
 exit
 # newgrp docker #(restart to activate the changes)
