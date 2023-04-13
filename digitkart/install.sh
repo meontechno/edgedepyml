@@ -34,23 +34,7 @@ chmod 777 $dir_path/download_manager.sh
 echo Downloading service manager files... 
 python_location=$(which python3)
 wget https://raw.githubusercontent.com/meontechno/edgedepyml/main/digitkart/download_manager.service -O /etc/systemd/system/download_manager.service
-wget https://raw.githubusercontent.com/meontechno/edgedepyml/main/digitkart/device_config.service -O /etc/systemd/system/device_config.service
-wget https://raw.githubusercontent.com/meontechno/edgedepyml/main/digitkart/vision_ai.service -O /etc/systemd/system/vision_ai.service
 
 echo Enabling services...
 systemctl daemon-reload
 systemctl enable download_manager.service
-systemctl enable device_config.service
-systemctl enable vision_ai.service
-
-echo Configuring docker for non-root user
-if [ "$(grep docker /etc/group)" ]
-then
-    echo docker group already exists
-else
-    groupadd docker
-fi
-usermod -aG docker $USER
-su - ${USER}
-exit
-# newgrp docker #(restart to activate the changes)
