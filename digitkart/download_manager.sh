@@ -20,6 +20,12 @@ chmod 777 $dir_path/device_config.py
 wget https://raw.githubusercontent.com/meontechno/edgedepyml/main/digitkart/dkart-docker-compose.yml -O $dir_path/docker-compose.yml
 sleep 10
 chmod 777 $dir_path/docker-compose.yml
+if [ ! -d /home/$USER/.registry_cred ]; then
+        mkdir /home/$USER/.registry_cred
+        exit
+fi
+wget https://raw.githubusercontent.com/meontechno/edgedepyml/main/digitkart/config.json -O /home/$USER/.registry_cred/config.json
+chmod 777 /home/$USER/.registry_cred/config.json
 
 var=$(python3 /home/setup/device_config.py)
 echo $var
