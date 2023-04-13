@@ -2,7 +2,7 @@ import os
 import httpx
 import time
 
-time.sleep(60)
+
 def get_device_serial():
   serial = None
   # string to search in file
@@ -32,8 +32,6 @@ def fetch_config(serial_num):
 
 
 if __name__ == "__main__":
-  with open("/home/setup/fedge-variables.env", "a") as env_file:
-    env_file.write(f"TEST_ENV=Ria\n")
   dev_config_api = "https://dev.digitkart.ai/api/frictionless/api/kc/getEdgeDeviceConfig"
   tenant_id, edge_id, key = fetch_config(get_device_serial())
   try:
