@@ -20,17 +20,18 @@ chmod 777 $dir_path/device_config.py
 wget https://raw.githubusercontent.com/meontechno/edgedepyml/main/digitkart/dkart-docker-compose.yml -O $dir_path/docker-compose.yml
 sleep 10
 chmod 777 $dir_path/docker-compose.yml
-if [ ! -d /home/$USER/.registry_cred ]; then
-        mkdir /home/$USER/.registry_cred
+cred_dir="/home/.registry_cred"
+if [ ! -d $cred_dir ]; then
+        mkdir $cred_dir
         exit
 fi
-wget https://raw.githubusercontent.com/meontechno/edgedepyml/main/digitkart/config.json -O /home/$USER/.registry_cred/config.json
-chmod 777 /home/$USER/.registry_cred/config.json
+wget https://raw.githubusercontent.com/meontechno/edgedepyml/main/digitkart/config.json -O $cred_dir/config.json
+chmod 777 $cred_dir/config.json
 
-var=$(python3 /home/setup/device_config.py)
+var=$(python3 $dir_path/device_config.py)
 echo $var
 if [[ "$var" == "Login Succeeded"  ]]; then
-        docker-compose -f /home/setup/docker-compose.yml up -d
+        docker-compose -f $dir_path/docker-compose.yml up -d
 else
         echo CRITICAL ERROR: Unable to login to docker...
 fi
