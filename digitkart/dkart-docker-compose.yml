@@ -5,7 +5,7 @@ services:
         image: containrrr/watchtower:armhf-latest
         volumes:
             - "/var/run/docker.sock:/var/run/docker.sock"
-            - "/home/orin1/.registry_cred/config.json:/config.json"
+            - "/home/.registry_cred/config.json:/config.json"
         command: "--interval 60"   
         restart: on-failure
     frictionless_scanner:
