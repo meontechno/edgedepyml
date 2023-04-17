@@ -21,6 +21,8 @@ Once the installation is successful, ssh into the device using the following ste
 4. Copy the first IP address and exit the session by pressing Ctrl+A, then Ctrl+K, then Y
 5. Unplug the serial cable from the laptop and Nvidia Jetson device
 6. Open a new terminal session on the computer and run the following command to ssh into the device: `ssh <username>@<IP>`
+7. Fetch serial number of the device using: `cat /proc/device-tree/serial-number`
+8. Allocate respective tenant ID and Edge ID for the device in admin portal.
 
 ### Install Vision-AI Service
 SSH into the device and execute below commands in a sequence:
