@@ -4,6 +4,7 @@ Requires=basic.target network-online.target
 After=basic.target network-online.target
 
 [Service]
+ExecStartPre=/sbin/modprobe uvcvideo
 ExecStart=/home/setup/download_manager.sh
 
 [Install]
