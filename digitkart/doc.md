@@ -33,4 +33,4 @@ SSH into the device and execute below commands in a sequence:
 
 Reboot the device twice (Wait for 5min after each reboot) for the services to be functional. 
 
-To check status of the services, login to the Nvidia Jetson and execute: `docker ps`
+To check status of the services, execute: `docker ps`
