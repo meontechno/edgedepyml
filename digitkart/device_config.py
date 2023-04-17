@@ -40,8 +40,8 @@ if __name__ == "__main__":
       env_file.write(f"EDGE_ID={edge_id}\n")
       env_file.write(f"TOPIC5={tenant_id}/{edge_id}/start-transaction\n")
       env_file.write(f"TOPIC6={tenant_id}/{edge_id}/stop-transaction\n")
-      env_file.write(f"TRANSACTION_TOPIC={tenant_id}/{edge_id}/start-transaction")
-      env_file.write(f"CLOSE_TRANSACTION_TOPIC={tenant_id}/{edge_id}/stop-transaction")
+      env_file.write(f"TRANSACTION_TOPIC={tenant_id}/{edge_id}/start-transaction\n")
+      env_file.write(f"CLOSE_TRANSACTION_TOPIC={tenant_id}/{edge_id}/stop-transaction\n")
       env_file.write(f"CART_TOPIC={edge_id}/stop-transaction\n")
   except Exception as e:
     print(f"Error occured: {e}\nCannot create env variables.")
