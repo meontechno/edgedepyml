@@ -22,7 +22,7 @@ Once the installation is successful, ssh into the device using the following ste
 5. Unplug the serial cable from the laptop and Nvidia Jetson device
 6. Open a new terminal session on the computer and run the following command to ssh into the device: `ssh <username>@<IP>`
 
-### Install Vision-AI Application
+### Install Vision-AI Service
 SSH into the device and execute below commands in a sequence:
 1. `wget https://raw.githubusercontent.com/meontechno/edgedepyml/main/digitkart/install.sh`
 2. `sudo chmod 777 install.sh`
