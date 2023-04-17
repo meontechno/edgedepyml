@@ -12,7 +12,7 @@ This document provides step-by-step instructions for setting up a Nvidia Jetson 
 2. Put the Nvidia Jetson device in recovery mode by pressing and holding the center button, then press the first button and let go of both buttons together.
 3. Launch the Nvidia SDK Manager on the laptop and establish a serial connection with the Nvidia Jetson device using the c-port on the front side of the device (with just 2 USB ports).
 4. Choose to the option JetPack 5.1 (rev. 1) to install.
-5. Choose the "Manually install the 32GB Developer kit Orin Jetson" option and configure the user name and password.
+5. Choose the "Manual Setup - Jetson AGX Orin [32 GB developer kit version]" option and configure the user name and password.
 
 Once the installation is successful, ssh into the device using the following steps:
 1. Open a terminal window on the computer, run the following command: `sudo screen /dev/ttyACM0 115200`
