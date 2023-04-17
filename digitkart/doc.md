@@ -9,13 +9,9 @@ This document provides step-by-step instructions for setting up a Nvidia Jetson 
 
 ### Installation Steps
 1. Connect the Nvidia Jetson device to the laptop using a serial cable.
-
 2. Put the Nvidia Jetson device in recovery mode by pressing and holding the center button, then press the first button and let go of both buttons together.
-
 3. Launch the Nvidia SDK Manager on the laptop and establish a serial connection with the Nvidia Jetson device using the c-port on the front side of the device (with just 2 USB ports).
-
 4. Choose to the option JetPack 5.1 (rev. 1) to install.
-
 5. Choose the "Manually install the 32GB Developer kit Orin Jetson" option and configure the user name and password.
 
 Once the installation is successful, ssh into the device using the following steps:
@@ -26,11 +22,8 @@ Once the installation is successful, ssh into the device using the following ste
 5. Unplug the serial cable from the laptop and Nvidia Jetson device
 6. Open a new terminal session on the computer and run the following command to ssh into the device: `ssh <username>@<IP>`
 
-
-Congratulations! You have successfully set up the Nvidia Jetson device and can now start working with it.
-
 ### Install Vision Service
-Ssh into the device and run the commands in a sequence:
+SSH into the device and execute below commands in a sequence:
 1. `wget https://raw.githubusercontent.com/meontechno/edgedepyml/main/digitkart/install.sh`
 2. `sudo chmod 777 install.sh`
 3. `sudo ./install.sh`
@@ -38,6 +31,6 @@ Ssh into the device and run the commands in a sequence:
 5. `sudo usermod -aG docker $USER`
 6. `newgrp docker`
 
-Reboot the device and wait for 5 mins for the services to be functional.To check status of the services, login to the Nvidia Jetson and execute: `docker ps`
+Reboot the device twice (Wait for 5min after each reboot) for the services to be functional. 
 
-NOTE: Reboot the device twice immediately after installing the vision service.
+To check status of the services, login to the Nvidia Jetson and execute: `docker ps`
