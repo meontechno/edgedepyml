@@ -2,10 +2,10 @@
 This document provides step-by-step instructions for setting up a Nvidia Jetson device for DigitKart.
 
 ### Requirements
-- Ubuntu 20.04 Laptop/computer with the latest Nvidia SDK Manager installed
+- Ubuntu 20.04 Laptop/computer with the latest [Nvidia SDK Manager](https://developer.nvidia.com/drive/sdk-manager) installed
 - Nvidia Jetson Orin 32G (shipped along with digitkart device)
-- USB type C to USB type A cable for serial connection
-- USB type C ot USB type A adapter
+- USB type C to USB type A [cable](https://www.amazon.com/AmazonBasics-Type-C-USB-Male-Cable/dp/B01GGKYLW0/ref=asc_df_B01GGKYLW0/?tag=hyprod-20&linkCode=df0&hvadid=167151358503&hvpos=&hvnetw=g&hvrand=10287814468522926347&hvpone=&hvptwo=&hvqmt=&hvdev=c&hvdvcmdl=&hvlocint=&hvlocphy=9026839&hvtargid=pla-300436575537&th=1) for serial connection
+- USB type C ot USB type A [adapter](https://www.amazon.com/Thunderbolt-Compatible-Chromebook-Pixelbook-Microsoft/dp/B07KR45LJW/ref=asc_df_B07KR45LJW/?tag=hyprod-20&linkCode=df0&hvadid=312780390407&hvpos=&hvnetw=g&hvrand=2152410768133120389&hvpone=&hvptwo=&hvqmt=&hvdev=c&hvdvcmdl=&hvlocint=&hvlocphy=9026839&hvtargid=pla-636721944170&th=1)
 
 ### Installation Steps
 1. Connect the Nvidia Jetson device to the laptop using a serial cable.
@@ -14,9 +14,9 @@ This document provides step-by-step instructions for setting up a Nvidia Jetson 
 
 3. Launch the Nvidia SDK Manager on the laptop and establish a serial connection with the Nvidia Jetson device using the c-port on the front side of the device (with just 2 USB ports).
 
-4. Choose the "Manually install the 32GB Developer kit Orin Jetson" option and configure the user name and password.
+4. Choose to the option JetPack 5.1 (rev. 1) to install.
 
-5. Install JetPack 5.1 (rev. 1) using the SDK Manager.
+5. Choose the "Manually install the 32GB Developer kit Orin Jetson" option and configure the user name and password.
 
 Once the installation is successful, ssh into the device using the following steps:
 1. Open a terminal window on the computer, run the following command: `sudo screen /dev/ttyACM0 115200`
@@ -28,3 +28,16 @@ Once the installation is successful, ssh into the device using the following ste
 
 
 Congratulations! You have successfully set up the Nvidia Jetson device and can now start working with it.
+
+### Install Vision Service
+Ssh into the device and run the commands in a sequence:
+1. `wget https://raw.githubusercontent.com/meontechno/edgedepyml/main/digitkart/install.sh`
+2. `sudo chmod 777 install.sh`
+3. `sudo ./install.sh`
+4. `sudo groupadd docker`
+5. `sudo usermod -aG docker $USER`
+6. `newgrp docker`
+
+Reboot the device and wait for 5 mins for the services to be functional.To check status of the services, login to the Nvidia Jetson and execute: `docker ps`
+
+NOTE: Reboot the device twice immediately after installing the vision service.
