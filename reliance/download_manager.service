@@ -1,0 +1,12 @@
+[Unit]
+Description=<Download files on reboot>
+Requires=basic.target network-online.target
+After=basic.target network-online.target
+
+[Service]
+ExecStartPre=/sbin/modprobe uvcvideo
+ExecStart=/home/setup/download_manager.sh
+ExecStop=/home/setup/docker-compose down
+
+[Install]
+WantedBy=multi-user.target
