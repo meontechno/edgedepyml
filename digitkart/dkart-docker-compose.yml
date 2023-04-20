@@ -1,13 +1,6 @@
 version: "3.4"
 
 services:
-    watchtower:
-        image: containrrr/watchtower:armhf-latest
-        volumes:
-            - "/var/run/docker.sock:/var/run/docker.sock"
-            - "/home/.registry_cred/config.json:/config.json"
-        command: "--interval 60"   
-        restart: on-failure
     frictionless_scanner:
         image: index.docker.io/meontechno/frictionless-scanner:qrcv
         command: "python3 qr_scanner/app.py"
