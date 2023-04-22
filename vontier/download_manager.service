@@ -6,7 +6,7 @@ After=basic.target network-online.target
 [Service]
 ExecStartPre=/sbin/modprobe uvcvideo
 ExecStart=/home/setup/download_manager.sh
-ExecStop=/home/setup/docker-compose down
+ExecStop=/usr/local/bin/docker-compose /home/setup/docker-compose.yml down
 
 [Install]
 WantedBy=multi-user.target
