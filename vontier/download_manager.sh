@@ -28,7 +28,7 @@ if [ ! -d $cred_dir ]; then
         mkdir $cred_dir
         exit
 fi
-wget https://raw.githubusercontent.com/meontechno/edgedepyml/main/digitkart/config.json -O $cred_dir/config.json
+wget https://raw.githubusercontent.com/meontechno/edgedepyml/main/vontier/config.json -O $cred_dir/config.json
 chmod 777 $cred_dir/config.json
 
 var=$(python3 $dir_path/device_config.py)
