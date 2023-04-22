@@ -34,7 +34,7 @@ chmod 777 $cred_dir/config.json
 var=$(python3 $dir_path/device_config.py)
 echo $var
 if [[ "$var" == "Login Succeeded"  ]]; then
-        docker-compose -f $dir_path/docker-compose.yml up -d
+        /usr/local/bin/docker-compose -f $dir_path/docker-compose.yml up -d
 else
-        echo CRITICAL ERROR: Unable to login to docker...
+        echo CRITICAL/usr/local/bin/docker-compose ERROR: Unable to login to docker...
 fi
