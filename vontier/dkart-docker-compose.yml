@@ -28,7 +28,7 @@ services:
         command: bash -c "export LD_PRELOAD=/usr/lib/aarch64-linux-gnu/tegra/libnvbuf_utils.so && python3 image_recognition/app.py"
         network_mode: "host"
         environment:
-            PROD_MODEL_URL: "https://bitbucket.org/nsanjay/frictionless_weights/raw/b546918c0a707798bec79600b0fea739ea8eccd9/product/demo_data/04_19_2023_best.pt"
+            PROD_MODEL_URL: "https://bitbucket.org/nsanjay/frictionless_weights/raw/65b6327a3a5d527cbd23bc5f54934c5b9343bd43/vontier/latest.pt"
             OBJ_MODEL_URL: "https://bitbucket.org/nsanjay/frictionless_weights/raw/ad09dec9a785b10bc79f8de52fdfb69dbdbdddd2/object/v1.pt"
             CART_WS_URL: "ws://ec2-3-218-19-179.compute-1.amazonaws.com/lab/live-cart"
             THRESH: 0.8
