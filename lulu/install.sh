@@ -15,7 +15,7 @@ pip3 install httpx
 pip3 install docker-compose
 
 echo Updating default runtime to nvidia...
-wget https://raw.githubusercontent.com/meontechno/edgedepyml/main/digitkart/daemon.json -O /etc/docker/daemon.json
+wget https://raw.githubusercontent.com/meontechno/edgedepyml/main/lulu/daemon.json -O /etc/docker/daemon.json
 systemctl daemon-reload
 systemctl restart docker
 
@@ -28,12 +28,12 @@ fi
 chmod 777 $dir_path
 
 echo Downloading download_manager... 
-wget https://raw.githubusercontent.com/meontechno/edgedepyml/main/digitkart/download_manager.sh -O $dir_path/download_manager.sh
+wget https://raw.githubusercontent.com/meontechno/edgedepyml/main/lulu/download_manager.sh -O $dir_path/download_manager.sh
 chmod 777 $dir_path/download_manager.sh
 
 echo Downloading service manager files... 
 python_location=$(which python3)
-wget https://raw.githubusercontent.com/meontechno/edgedepyml/main/digitkart/download_manager.service -O /etc/systemd/system/download_manager.service
+wget https://raw.githubusercontent.com/meontechno/edgedepyml/main/lulu/download_manager.service -O /etc/systemd/system/download_manager.service
 
 echo Enabling services...
 systemctl daemon-reload
