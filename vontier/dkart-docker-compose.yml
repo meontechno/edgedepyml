@@ -32,7 +32,7 @@ services:
             OBJ_MODEL_URL: "https://bitbucket.org/nsanjay/frictionless_weights/raw/ad09dec9a785b10bc79f8de52fdfb69dbdbdddd2/object/v1.pt"
             CART_WS_URL: "ws://ec2-3-218-19-179.compute-1.amazonaws.com/lab/live-cart"
             THRESH: 0.8
-            SSIM_THRESH: 0.95
+            SSIM_THRESH: 0.90
             BROKER: "broker.hivemq.com"
             TOPIC1: "frictionless/customer-id-scan"
             TOPIC2: "frictionless/close-transaction"
