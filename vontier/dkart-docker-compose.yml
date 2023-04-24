@@ -38,7 +38,7 @@ services:
             TOPIC2: "frictionless/close-transaction"
             TOPIC3: "frictionless/ivlab/start-transaction"
             GRID_PTS: '["83", "144", "546", "462", "118", "187", "490", "475", "138", "147", "497", "475"]'
-            CART_TOPIC: "KCED90044/frictionless/edge-cart"
+            CART_TOPIC: "REDUNDANT/frictionless/edge-cart"
             IMG_WS_URL: "ws://ec2-3-218-19-179.compute-1.amazonaws.com/lab/image-ws"
             CART_API: "https://dev.digitkart.ai/api/frictionless/api/kc/updateTransaction"
             ASSOCIATE_CUST_API: "https://dev.digitkart.ai/api/frictionless/api/kc/associateCustomerId"
