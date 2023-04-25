@@ -20,9 +20,9 @@ chmod 777 $dir_path/device_config.py
 wget https://raw.githubusercontent.com/meontechno/edgedepyml/main/reliance/dkart-docker-compose.yml -O $dir_path/docker-compose.yml
 sleep 10
 chmod 777 $dir_path/docker-compose.yml
-wget https://raw.githubusercontent.com/meontechno/edgedepyml/main/reliance/items_mapping.py -O $dir_path/items_mapping.py
+wget https://raw.githubusercontent.com/meontechno/edgedepyml/main/reliance/items_mapping.json -O $dir_path/items_mapping.json
 sleep 10
-chmod 777 $dir_path/items_mapping.py
+chmod 777 $dir_path/items_mapping.json
 cred_dir="/home/.registry_cred"
 if [ ! -d $cred_dir ]; then
         mkdir $cred_dir
