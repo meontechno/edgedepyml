@@ -45,7 +45,7 @@ services:
         env_file:
             - fedge-variables.env
         volumes:
-            - "/home/setup/items_mapping.py:/app/image_recognition/utils/items_mapping.py"
+            - "./items_mapping.json:/app/config/items_mapping.json"
         devices:
             - "/dev/video0:/dev/video0"
             - "/dev/video2:/dev/video1"
